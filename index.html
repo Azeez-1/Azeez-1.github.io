@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Azeez Adewale — Cybersecurity Professional</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    /* ── TOKENS ──────────────────────────────────────────── */
+    :root {
+      --navy:      #0A1628;
+      --navy-mid:  #0F2040;
+      --blue:      #2563EB;
+      --blue-light:#3B82F6;
+      --slate:     #8892A4;
+      --white:     #FFFFFF;
+      --surface:   #F8FAFC;
+      --border:    #E2E8F0;
+      --text:      #1E293B;
+      --radius:    8px;
+      --transition: 0.22s ease;
+    }
+
+    /* ── RESET ───────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--white);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { text-decoration: none; color: inherit; }
+    img { display: block; max-width: 100%; }
+
+    /* ── NAV ─────────────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(10, 22, 40, 0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      padding: 0 2rem;
+      height: 64px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-brand {
+      font-size: 1.1rem; font-weight: 700;
+      color: var(--white); letter-spacing: -0.02em;
+    }
+    .nav-brand span { color: var(--blue-light); }
+    .nav-links { display: flex; gap: 2rem; }
+    .nav-links a {
+      font-size: 0.875rem; font-weight: 500;
+      color: var(--slate);
+      transition: color var(--transition);
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-cta {
+      font-size: 0.875rem; font-weight: 600;
+      background: var(--blue); color: var(--white);
+      padding: 0.5rem 1.25rem; border-radius: var(--radius);
+      transition: background var(--transition);
+    }
+    .nav-cta:hover { background: var(--blue-light); }
+
+    /* ── HERO ────────────────────────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      background: var(--navy);
+      display: flex; align-items: center; justify-content: center;
+      padding: 6rem 2rem 4rem;
+      position: relative; overflow: hidden;
+    }
+    .hero-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(37,99,235,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(37,99,235,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .hero-glow {
+      position: absolute; top: -20%; left: 50%;
+      transform: translateX(-50%);
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(37,99,235,0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-content {
+      position: relative; z-index: 1;
+      max-width: 760px; text-align: center;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(37,99,235,0.15);
+      border: 1px solid rgba(37,99,235,0.3);
+      color: var(--blue-light);
+      font-size: 0.8rem; font-weight: 600;
+      padding: 0.35rem 0.9rem; border-radius: 100px;
+      margin-bottom: 1.75rem; letter-spacing: 0.04em; text-transform: uppercase;
+    }
+    .hero-badge::before {
+      content: ''; width: 6px; height: 6px;
+      background: var(--blue-light); border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; } 50% { opacity: 0.3; }
+    }
+    .hero-name {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 800; color: var(--white);
+      letter-spacing: -0.03em; line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+    .hero-role {
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      color: var(--slate); font-weight: 400;
+      margin-bottom: 0.5rem;
+    }
+    .hero-typewriter {
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      color: var(--blue-light);
+      font-weight: 600; min-height: 2rem;
+      margin-bottom: 2.25rem;
+    }
+    .cursor {
+      display: inline-block;
+      width: 2px; height: 1.1em;
+      background: var(--blue-light);
+      margin-left: 2px;
+      vertical-align: text-bottom;
+      animation: blink 0.9s step-end infinite;
+    }
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+    .hero-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--blue); color: var(--white);
+      font-size: 0.95rem; font-weight: 600;
+      padding: 0.8rem 2rem; border-radius: var(--radius);
+      transition: background var(--transition), transform var(--transition);
+    }
+    .btn-primary:hover { background: var(--blue-light); transform: translateY(-1px); }
+    .btn-outline {
+      background: transparent; color: var(--white);
+      font-size: 0.95rem; font-weight: 600;
+      padding: 0.8rem 2rem; border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,0.2);
+      transition: border-color var(--transition), transform var(--transition);
+    }
+    .btn-outline:hover { border-color: rgba(255,255,255,0.5); transform: translateY(-1px); }
+
+    /* ── SECTIONS ────────────────────────────────────────── */
+    section { padding: 6rem 2rem; }
+    .container { max-width: 1060px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.75rem; font-weight: 700;
+      color: var(--blue); letter-spacing: 0.1em; text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .section-title {
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      font-weight: 800; color: var(--navy);
+      letter-spacing: -0.03em; line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+    .section-sub {
+      font-size: 1rem; color: var(--slate);
+      max-width: 560px; margin-bottom: 3rem;
+    }
+    .divider {
+      width: 40px; height: 3px;
+      background: var(--blue); border-radius: 2px;
+      margin: 1rem 0 2.5rem;
+    }
+
+    /* ── ABOUT ───────────────────────────────────────────── */
+    #about { background: var(--surface); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem; align-items: center;
+    }
+    .about-text p {
+      font-size: 1rem; color: #475569;
+      margin-bottom: 1rem; line-height: 1.8;
+    }
+    .about-stats {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+    .stat-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+    }
+    .stat-card .stat-num {
+      font-size: 2rem; font-weight: 800;
+      color: var(--blue); letter-spacing: -0.04em;
+    }
+    .stat-card .stat-label {
+      font-size: 0.8rem; color: var(--slate);
+      font-weight: 500; margin-top: 0.25rem;
+    }
+
+    /* ── SKILLS ──────────────────────────────────────────── */
+    #skills { background: var(--white); }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .skill-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      transition: border-color var(--transition), box-shadow var(--transition);
+    }
+    .skill-card:hover {
+      border-color: var(--blue);
+      box-shadow: 0 4px 24px rgba(37,99,235,0.08);
+    }
+    .skill-card-icon {
+      width: 40px; height: 40px;
+      background: rgba(37,99,235,0.1);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+    }
+    .skill-card h3 {
+      font-size: 0.95rem; font-weight: 700;
+      color: var(--navy); margin-bottom: 0.75rem;
+    }
+    .tag-list { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .tag {
+      font-size: 0.75rem; font-weight: 500;
+      color: var(--blue);
+      background: rgba(37,99,235,0.08);
+      padding: 0.25rem 0.65rem; border-radius: 100px;
+      border: 1px solid rgba(37,99,235,0.15);
+    }
+
+    /* ── PROJECTS ────────────────────────────────────────── */
+    #projects { background: var(--surface); }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+    .project-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
+      display: flex; flex-direction: column;
+    }
+    .project-card:hover {
+      border-color: var(--blue);
+      box-shadow: 0 8px 32px rgba(37,99,235,0.1);
+      transform: translateY(-3px);
+    }
+    .project-header {
+      display: flex; justify-content: space-between;
+      align-items: flex-start; margin-bottom: 0.75rem;
+    }
+    .project-type {
+      font-size: 0.7rem; font-weight: 700;
+      color: var(--blue); letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .project-links { display: flex; gap: 0.5rem; }
+    .project-link {
+      font-size: 0.75rem; font-weight: 600;
+      color: var(--slate); padding: 0.25rem 0.6rem;
+      border: 1px solid var(--border); border-radius: 4px;
+      transition: color var(--transition), border-color var(--transition);
+    }
+    .project-link:hover { color: var(--blue); border-color: var(--blue); }
+    .project-card h3 {
+      font-size: 1.05rem; font-weight: 700;
+      color: var(--navy); margin-bottom: 0.6rem;
+    }
+    .project-card p {
+      font-size: 0.9rem; color: #64748B;
+      line-height: 1.7; flex: 1; margin-bottom: 1.25rem;
+    }
+
+    /* ── CERTIFICATIONS ──────────────────────────────────── */
+    #certifications { background: var(--white); }
+    .certs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.25rem;
+    }
+    .cert-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      display: flex; gap: 1rem; align-items: flex-start;
+      transition: border-color var(--transition);
+    }
+    .cert-card:hover { border-color: var(--blue); }
+    .cert-icon {
+      width: 44px; height: 44px; flex-shrink: 0;
+      background: rgba(37,99,235,0.1);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem;
+    }
+    .cert-info h4 {
+      font-size: 0.9rem; font-weight: 700;
+      color: var(--navy); margin-bottom: 0.2rem;
+    }
+    .cert-info p { font-size: 0.8rem; color: var(--slate); }
+    .cert-info .cert-year {
+      font-size: 0.75rem; font-weight: 600;
+      color: var(--blue); margin-top: 0.4rem;
+    }
+
+    /* ── CONTACT ─────────────────────────────────────────── */
+    #contact {
+      background: var(--navy);
+      text-align: center;
+    }
+    #contact .section-title { color: var(--white); }
+    #contact .section-sub { color: var(--slate); margin: 0 auto 2.5rem; }
+    .contact-links {
+      display: flex; justify-content: center;
+      gap: 1rem; flex-wrap: wrap;
+    }
+    .contact-btn {
+      display: flex; align-items: center; gap: 0.5rem;
+      font-size: 0.9rem; font-weight: 600;
+      padding: 0.8rem 1.5rem; border-radius: var(--radius);
+      transition: transform var(--transition), background var(--transition);
+    }
+    .contact-btn:hover { transform: translateY(-2px); }
+    .contact-btn.primary {
+      background: var(--blue); color: var(--white);
+    }
+    .contact-btn.primary:hover { background: var(--blue-light); }
+    .contact-btn.ghost {
+      background: rgba(255,255,255,0.07);
+      color: var(--white);
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+    .contact-btn.ghost:hover { background: rgba(255,255,255,0.12); }
+
+    /* ── FOOTER ──────────────────────────────────────────── */
+    footer {
+      background: #060e1a;
+      color: var(--slate);
+      text-align: center;
+      padding: 1.75rem 2rem;
+      font-size: 0.8rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+
+    /* ── SCROLL REVEAL ───────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── RESPONSIVE ──────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .nav-links { display: none; }
+      section { padding: 4rem 1.25rem; }
+      .hero-actions { flex-direction: column; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">Azeez<span>.</span></div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#certifications">Certifications</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <a href="#contact" class="nav-cta">Hire Me</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Available for Opportunities</div>
+    <h1 class="hero-name">Azeez Adewale</h1>
+    <p class="hero-role">Final-Year Cybersecurity Student · FUTA, Nigeria</p>
+    <div class="hero-typewriter" id="typewriter"><span class="cursor"></span></div>
+    <div class="hero-actions">
+      <a href="#projects" class="btn-primary">View My Work</a>
+      <a href="#contact" class="btn-outline">Get In Touch</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <div class="section-label">About Me</div>
+        <h2 class="section-title">Defending systems,<br>one layer at a time.</h2>
+        <div class="divider"></div>
+        <p>I'm a final-year B.Tech Cybersecurity student at the Federal University of Technology, Akure (FUTA), passionate about defensive security, cloud infrastructure, and building resilient systems.</p>
+        <p>My focus areas include SOC operations, incident response, DevSecOps, and cloud security on AWS and Azure. I believe security isn't a feature — it's a foundation.</p>
+        <p>Outside the terminal, I enjoy marathon running, Arabic and Yoruba languages, and sharing my learning journey on LinkedIn.</p>
+      </div>
+      <div class="about-stats reveal">
+        <div class="stat-card">
+          <div class="stat-num">1st</div>
+          <div class="stat-label">Amdari Cybersecurity Hackathon 2026</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">MCNA</div>
+          <div class="stat-label">Aviatrix Multi-Cloud Network Associate</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">AWS</div>
+          <div class="stat-label">Cloud Security & DevSecOps Projects</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">AZ</div>
+          <div class="stat-label">Azure IAM, App Service & CI/CD</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <div class="section-label reveal">Skills</div>
+    <h2 class="section-title reveal">What I bring to the table</h2>
+    <div class="divider reveal"></div>
+    <div class="skills-grid">
+      <div class="skill-card reveal">
+        <div class="skill-card-icon">🛡️</div>
+        <h3>Defensive Security</h3>
+        <div class="tag-list">
+          <span class="tag">SOC Operations</span>
+          <span class="tag">Incident Response</span>
+          <span class="tag">Splunk</span>
+          <span class="tag">Log Analysis</span>
+          <span class="tag">SIEM</span>
+          <span class="tag">Threat Intelligence</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-card-icon">☁️</div>
+        <h3>Cloud Security</h3>
+        <div class="tag-list">
+          <span class="tag">AWS GuardDuty</span>
+          <span class="tag">Security Hub</span>
+          <span class="tag">IAM</span>
+          <span class="tag">Azure RBAC</span>
+          <span class="tag">VNet / NSG</span>
+          <span class="tag">Managed Identity</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-card-icon">⚙️</div>
+        <h3>DevSecOps</h3>
+        <div class="tag-list">
+          <span class="tag">GitHub Actions</span>
+          <span class="tag">TruffleHog</span>
+          <span class="tag">Bandit</span>
+          <span class="tag">Trivy</span>
+          <span class="tag">pip-audit</span>
+          <span class="tag">CI/CD Pipelines</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-card-icon">🔧</div>
+        <h3>Tools & Platforms</h3>
+        <div class="tag-list">
+          <span class="tag">Kali Linux</span>
+          <span class="tag">Docker</span>
+          <span class="tag">Python</span>
+          <span class="tag">Bash</span>
+          <span class="tag">AWS Lambda</span>
+          <span class="tag">SNS</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-card-icon">🌐</div>
+        <h3>Networking</h3>
+        <div class="tag-list">
+          <span class="tag">Multi-Cloud Networking</span>
+          <span class="tag">VPC</span>
+          <span class="tag">Firewall Rules</span>
+          <span class="tag">VoIP Security</span>
+          <span class="tag">Aviatrix</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-card-icon">🔍</div>
+        <h3>Offensive & Research</h3>
+        <div class="tag-list">
+          <span class="tag">Penetration Testing</span>
+          <span class="tag">CTF Challenges</span>
+          <span class="tag">Buffer Overflow</span>
+          <span class="tag">Steganography</span>
+          <span class="tag">OSINT</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <div class="section-label reveal">Projects</div>
+    <h2 class="section-title reveal">Selected Work</h2>
+    <div class="divider reveal"></div>
+    <div class="projects-grid">
+
+      <div class="project-card reveal">
+        <div class="project-header">
+          <span class="project-type">DevSecOps · AWS</span>
+          <div class="project-links">
+            <a href="https://github.com/Azeez-1" target="_blank" class="project-link">GitHub</a>
+          </div>
+        </div>
+        <h3>Meridian DevSecOps Pipeline</h3>
+        <p>End-to-end CI security pipeline with TruffleHog, Bandit, and pip-audit integrated into GitHub Actions. Paired with an AWS automated response chain: GuardDuty → Security Hub (CIS v1.2.0) → Lambda IAM auto-remediation → SNS alerting.</p>
+        <div class="tag-list">
+          <span class="tag">GuardDuty</span>
+          <span class="tag">Lambda</span>
+          <span class="tag">GitHub Actions</span>
+          <span class="tag">CIS v1.2.0</span>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-header">
+          <span class="project-type">Cloud · Azure</span>
+          <div class="project-links">
+            <a href="https://github.com/Azeez-1" target="_blank" class="project-link">GitHub</a>
+          </div>
+        </div>
+        <h3>Zizax Cloud Portfolio App</h3>
+        <p>Flask application deployed on Azure App Service with Blob Storage, VNet/NSG, Managed Identity/RBAC, and a fully automated GitHub Actions CI/CD pipeline using Service Principal authentication.</p>
+        <div class="tag-list">
+          <span class="tag">Azure App Service</span>
+          <span class="tag">Managed Identity</span>
+          <span class="tag">RBAC</span>
+          <span class="tag">CI/CD</span>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-header">
+          <span class="project-type">IAM · Azure</span>
+          <div class="project-links">
+            <a href="https://github.com/Azeez-1" target="_blank" class="project-link">GitHub</a>
+          </div>
+        </div>
+        <h3>CloudScale Logistics IAM Lab</h3>
+        <p>Comprehensive Azure IAM/RBAC implementation for a fictional logistics company, executed across the Azure Portal, PowerShell, and Azure CLI — demonstrating least-privilege access at scale.</p>
+        <div class="tag-list">
+          <span class="tag">Azure IAM</span>
+          <span class="tag">PowerShell</span>
+          <span class="tag">Azure CLI</span>
+          <span class="tag">RBAC</span>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-header">
+          <span class="project-type">ML · Security</span>
+          <div class="project-links">
+            <a href="https://github.com/Azeez-1" target="_blank" class="project-link">GitHub</a>
+          </div>
+        </div>
+        <h3>IDS with BFO-Optimized SVM</h3>
+        <p>Intrusion Detection System using Bacterial Foraging Optimization to tune an SVM classifier on the NSL-KDD dataset, achieving 99.33% detection accuracy with reduced false positives.</p>
+        <div class="tag-list">
+          <span class="tag">Python</span>
+          <span class="tag">SVM</span>
+          <span class="tag">NSL-KDD</span>
+          <span class="tag">BFO</span>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-header">
+          <span class="project-type">Infrastructure · AWS</span>
+          <div class="project-links">
+            <a href="https://github.com/Azeez-1" target="_blank" class="project-link">GitHub</a>
+          </div>
+        </div>
+        <h3>Static Site on AWS (S3 + CloudFront)</h3>
+        <p>Production-grade static website hosting using S3 for storage, CloudFront as CDN, and Amplify for deployment automation — with proper IAM role separation and bucket policies.</p>
+        <div class="tag-list">
+          <span class="tag">S3</span>
+          <span class="tag">CloudFront</span>
+          <span class="tag">Amplify</span>
+          <span class="tag">IAM</span>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-header">
+          <span class="project-type">Networking · Docker</span>
+          <div class="project-links">
+            <a href="https://github.com/Azeez-1" target="_blank" class="project-link">GitHub</a>
+          </div>
+        </div>
+        <h3>NGINX/Traefik Reverse Proxy</h3>
+        <p>Containerized reverse proxy setup using Docker Compose with NGINX and Traefik, configured for HTTPS termination — demonstrating secure traffic routing in a multi-service architecture.</p>
+        <div class="tag-list">
+          <span class="tag">Docker</span>
+          <span class="tag">NGINX</span>
+          <span class="tag">Traefik</span>
+          <span class="tag">HTTPS</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="container">
+    <div class="section-label reveal">Certifications</div>
+    <h2 class="section-title reveal">Credentials & Training</h2>
+    <div class="divider reveal"></div>
+    <div class="certs-grid">
+      <div class="cert-card reveal">
+        <div class="cert-icon">🏆</div>
+        <div class="cert-info">
+          <h4>Aviatrix MCNA</h4>
+          <p>Multi-Cloud Network Associate — Aviatrix</p>
+          <div class="cert-year">Active</div>
+        </div>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-icon">☁️</div>
+        <div class="cert-info">
+          <h4>3MTT NextGen Fellowship</h4>
+          <p>Cloud Computing / Azure Track — Airtel × 3MTT</p>
+          <div class="cert-year">2026</div>
+        </div>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-icon">🥇</div>
+        <div class="cert-info">
+          <h4>Hackathon Champion</h4>
+          <p>1st Place — Amdari Cybersecurity Hackathon</p>
+          <div class="cert-year">2026</div>
+        </div>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-icon">🎓</div>
+        <div class="cert-info">
+          <h4>B.Tech Cybersecurity (In Progress)</h4>
+          <p>Federal University of Technology, Akure</p>
+          <div class="cert-year">Expected 2025/2026</div>
+        </div>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-icon">🔐</div>
+        <div class="cert-info">
+          <h4>Amdari DevSecOps Internship</h4>
+          <p>Meridian Capstone — CI Security & AWS AutoRemediation</p>
+          <div class="cert-year">2026</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="section-label reveal" style="color: var(--blue-light);">Contact</div>
+    <h2 class="section-title reveal">Let's build something secure.</h2>
+    <p class="section-sub reveal">
+      Open to SOC roles, cloud security positions, internships, and collaborative projects. Based in Nigeria — available remotely.
+    </p>
+    <div class="contact-links reveal">
+      <a href="mailto:your@email.com" class="contact-btn primary">✉️ Send Email</a>
+      <a href="https://linkedin.com/in/your-linkedin" target="_blank" class="contact-btn ghost">💼 LinkedIn</a>
+      <a href="https://github.com/Azeez-1" target="_blank" class="contact-btn ghost">🐙 GitHub</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 Azeez Adewale · Built with intention, deployed with purpose.</p>
+</footer>
+
+<script>
+  /* ── TYPEWRITER ── */
+  const roles = [
+    "SOC Analyst & Incident Responder",
+    "Cloud Security Engineer",
+    "DevSecOps Practitioner",
+    "AWS & Azure Security Specialist",
+    "Defensive Security Advocate"
+  ];
+  const tw = document.getElementById('typewriter');
+  let roleIdx = 0, charIdx = 0, deleting = false;
+
+  function type() {
+    const current = roles[roleIdx];
+    const display = deleting
+      ? current.substring(0, charIdx--)
+      : current.substring(0, charIdx++);
+
+    tw.innerHTML = display + '<span class="cursor"></span>';
+
+    let delay = deleting ? 45 : 80;
+    if (!deleting && charIdx > current.length) {
+      delay = 2000; deleting = true;
+    } else if (deleting && charIdx < 0) {
+      deleting = false; charIdx = 0;
+      roleIdx = (roleIdx + 1) % roles.length;
+      delay = 400;
+    }
+    setTimeout(type, delay);
+  }
+  type();
+
+  /* ── SCROLL REVEAL ── */
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
